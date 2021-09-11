@@ -46,7 +46,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 18.8633
+radius = 13.2022
 
 [node name="Asteroid" type="RigidBody2D" groups=[
 "asteroids",
@@ -61,15 +61,14 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -0.583992, 0.500566 )
-scale = Vector2( 1.67576, 1.65073 )
+position = Vector2( 0.0834272, 0.0834281 )
+scale = Vector2( 1.19188, 1.22525 )
 
 [connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

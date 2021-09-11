@@ -83,7 +83,6 @@ func shoot():
 
 
 func _on_ForceField_body_entered(body):
-	print("Something hit the spaceship")
 	if body.is_in_group("asteroids") and not immune:
 		take_damage(body)
 	if body.is_in_group("asteroids"):

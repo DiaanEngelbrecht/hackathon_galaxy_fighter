@@ -8,6 +8,7 @@ func _on_SpawnTimer_timeout():
 	$AsteroidSpawner.offset = randi()
 	# Create a Asteroid instance and add it to the scene.
 	var asteroid = Asteroid.instance()
+	asteroid.set_size(rand_range(1, 4))
 	add_child(asteroid)
 	# Set the mob's direction perpendicular to the path direction.
 	var direction = $AsteroidSpawner.rotation - PI / 2
@@ -19,3 +20,7 @@ func _on_SpawnTimer_timeout():
 	# Set the velocity (speed & direction).
 	asteroid.linear_velocity = Vector2(rand_range(asteroid.MIN_SPEED, asteroid.MAX_SPEED), 0)
 	asteroid.linear_velocity = asteroid.linear_velocity.rotated(direction)
+
+	$SpawnTimer.wait_time = clamp(lerp($SpawnTimer.wait_time, 0.25, 0.01), 0.25, 1)
+
+	print($SpawnTimer.wait_time)
