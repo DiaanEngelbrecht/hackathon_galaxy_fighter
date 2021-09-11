@@ -8,6 +8,12 @@ const KINETIC_FRICTION = 0.05
 # Global variables
 var motion
 
+export (PackedScene) var Bullet
+
+onready var end_of_gun = $EndOfGun
+onready var gun2 = $gun2
+
+
 func _ready():
 	motion = Vector2.ZERO
 
@@ -42,3 +48,21 @@ func get_movement_direction():
 
 	return direction
 
+func _unhandled_input(event):
+	if event.is_action_released('shoot'):
+		shoot()
+		
+		
+func shoot():
+	var bullet_instance1 = Bullet.instance()
+	var bullet_instance2 = Bullet.instance()
+	add_child(bullet_instance1)
+	add_child(bullet_instance2)
+	bullet_instance1.global_position = end_of_gun.global_position
+	bullet_instance2.global_position = gun2.global_position
+	var target = get_global_mouse_position()
+	var direction_to_mouse1 = bullet_instance1.global_position.direction_to(target).normalized()
+	bullet_instance1.set_direction(direction_to_mouse1)
+	var direction_to_mouse2 = bullet_instance2.global_position.direction_to(target).normalized()
+	bullet_instance2.set_direction(direction_to_mouse2)
+	print('shot!')
