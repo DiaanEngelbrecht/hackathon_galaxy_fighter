@@ -13,12 +13,14 @@ var immune := false
 
 export (PackedScene) var Bullet
 
+onready var game_state = GameState
 onready var right_gun = $RightGun
 onready var left_gun = $LeftGun
 
 
 func _ready():
 	motion = Vector2.ZERO
+	game_state.connect("game_over", self, "queue_free")
 
 func _physics_process(delta):
 	move_spaceship()
@@ -88,6 +90,7 @@ func _on_ForceField_body_entered(body):
 		recoil(body)
 
 func take_damage(body):
+	game_state.decrement_health()
 	immune = true
 	$AnimationPlayer.play("Damaged")
 	$ForceField/ImmunityTimer.start()
