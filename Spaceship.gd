@@ -4,9 +4,12 @@ extends KinematicBody2D
 const MAX_MOVEMENT_SPEED = 400
 const ACCELERATION = 25
 const KINETIC_FRICTION = 0.05
+const IMPACT_STRENGTH = 100
+const MASS = 100
 
 # Global variables
-var motion
+var motion := Vector2.ZERO
+var immune := false
 
 export (PackedScene) var Bullet
 
@@ -73,5 +76,25 @@ func shoot():
 	get_parent().add_child(right_bullet_instance)
 	get_parent().add_child(left_bullet_instance)
 
-	right_bullet_instance.set_direction(Vector2.UP.rotated(rotation))
-	left_bullet_instance.set_direction(Vector2.UP.rotated(rotation))
+	right_bullet_instance.set_direction(Vector2.UP.rotated(rotation - PI/60))
+	left_bullet_instance.set_direction(Vector2.UP.rotated(rotation + PI/60))
+
+
+func _on_ForceField_body_entered(body):
+	print("Something hit the spaceship")
+	if body.is_in_group("asteroids") and not immune:
+		take_damage(body)
+
+func take_damage(body):
+	immune = true
+	$AnimationPlayer.play("Damaged")
+	$ForceField/ImmunityTimer.start()
+	
+	var response_force_direction = body.position.direction_to(position)
+	var impact_impulse = response_force_direction * IMPACT_STRENGTH * (body.linear_velocity - motion).length()
+	motion += impact_impulse / MASS # Need to register a mass for our spaceship, so that the accelaration matches relative to the asteroid mass
+	body.apply_impulse(Vector2.ZERO, impact_impulse.rotated(PI))
+
+
+func _on_ImmunityTimer_timeout():
+	immune = false
