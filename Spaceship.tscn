@@ -61,6 +61,7 @@ emitting = false
 amount = 200
 lifetime = 0.5
 speed_scale = 0.6
+local_coords = false
 process_material = SubResource( 3 )
 
 [node name="RightThrustor" type="Particles2D" parent="Thrustors"]
@@ -69,4 +70,5 @@ emitting = false
 amount = 200
 lifetime = 0.5
 speed_scale = 0.6
+local_coords = false
 process_material = SubResource( 3 )
