@@ -1,3 +1,17 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/black_background.png" type="Texture" id=1]
+[ext_resource path="res://ParallaxBackground.gd" type="Script" id=2]
 
 [node name="World" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 2 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 720 )
+
+[node name="black_background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 243.499, 373.166 )
+scale = Vector2( 1.18958, 1.12917 )
+texture = ExtResource( 1 )
