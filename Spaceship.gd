@@ -13,7 +13,9 @@ func _physics_process(delta):
 	var direction = get_movement_direction()
 	motion += direction * MOVEMENT_SPEED
 	move_and_slide(motion)
-	rotate(position.angle_to(get_global_mouse_position()))
+	var angle_to_rotate = Vector2.DOWN.angle_to((position - get_global_mouse_position()).normalized())
+	print(rad2deg(angle_to_rotate))
+	rotation = angle_to_rotate
 
 
 func get_movement_direction():
