@@ -84,12 +84,15 @@ func _on_ForceField_body_entered(body):
 	print("Something hit the spaceship")
 	if body.is_in_group("asteroids") and not immune:
 		take_damage(body)
+	if body.is_in_group("asteroids"):
+		recoil(body)
 
 func take_damage(body):
 	immune = true
 	$AnimationPlayer.play("Damaged")
 	$ForceField/ImmunityTimer.start()
-	
+
+func recoil(body):
 	var response_force_direction = body.position.direction_to(position)
 	var impact_impulse = response_force_direction * IMPACT_STRENGTH * (body.linear_velocity - motion).length()
 	motion += impact_impulse / MASS # Need to register a mass for our spaceship, so that the accelaration matches relative to the asteroid mass
