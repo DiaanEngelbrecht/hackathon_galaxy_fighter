@@ -8,11 +8,12 @@
 [node name="World" type="Node2D"]
 
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
+position = Vector2( 243.056, 584.641 )
 
 [node name="Asteroids" type="Node2D" parent="."]
 
 [node name="Asteroid" parent="Asteroids" instance=ExtResource( 2 )]
-position = Vector2( 136.307, 33.4733 )
+position = Vector2( 286.138, 249.23 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 4 )

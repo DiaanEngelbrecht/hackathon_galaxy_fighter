@@ -1,7 +1,9 @@
 extends KinematicBody2D
 
 # Global constants
-const MOVEMENT_SPEED = 10
+const MAX_MOVEMENT_SPEED = 400
+const ACCELERATION = 25
+const KINETIC_FRICTION = 0.05
 
 # Global variables
 var motion
@@ -10,13 +12,21 @@ func _ready():
 	motion = Vector2.ZERO
 
 func _physics_process(delta):
-	var direction = get_movement_direction()
-	motion += direction * MOVEMENT_SPEED
-	move_and_slide(motion)
-	var angle_to_rotate = Vector2.DOWN.angle_to((position - get_global_mouse_position()).normalized())
-	print(rad2deg(angle_to_rotate))
-	rotation = angle_to_rotate
+	move_spaceship()
+	rotate_spaceship()
 
+func move_spaceship():
+	var direction = get_movement_direction()
+
+	motion += direction * ACCELERATION
+
+	var motion_direction = motion.normalized()
+	var motion_magnitude = clamp(motion.length() * (1-KINETIC_FRICTION), 0, MAX_MOVEMENT_SPEED)
+	motion = motion_magnitude * motion_direction
+	move_and_slide(motion)
+
+func rotate_spaceship():
+	rotation = Vector2.DOWN.angle_to((position - get_global_mouse_position()).normalized())
 
 func get_movement_direction():
 	var direction = Vector2.ZERO
@@ -31,3 +41,4 @@ func get_movement_direction():
 		direction += Vector2(-1,0)
 
 	return direction
+
