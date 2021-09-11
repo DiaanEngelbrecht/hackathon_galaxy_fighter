@@ -10,8 +10,8 @@ var motion
 
 export (PackedScene) var Bullet
 
-onready var end_of_gun = $EndOfGun
-onready var gun2 = $gun2
+onready var right_gun = $RightGun
+onready var left_gun = $LeftGun
 
 
 func _ready():
@@ -29,6 +29,7 @@ func move_spaceship():
 	var motion_direction = motion.normalized()
 	var motion_magnitude = clamp(motion.length() * (1-KINETIC_FRICTION), 0, MAX_MOVEMENT_SPEED)
 	motion = motion_magnitude * motion_direction
+	fire_engines(direction)
 	move_and_slide(motion)
 
 func rotate_spaceship():
@@ -51,18 +52,26 @@ func get_movement_direction():
 func _unhandled_input(event):
 	if event.is_action_released('shoot'):
 		shoot()
-		
-		
+
+func fire_engines(direction):
+	if direction.length() == 0:
+		$Thrustors/LeftThrustor.emitting = false
+		$Thrustors/RightThrustor.emitting = false
+	else:
+		$Thrustors/LeftThrustor.emitting = true
+		$Thrustors/RightThrustor.emitting = true
+
 func shoot():
-	var bullet_instance1 = Bullet.instance()
-	var bullet_instance2 = Bullet.instance()
-	add_child(bullet_instance1)
-	add_child(bullet_instance2)
-	bullet_instance1.global_position = end_of_gun.global_position
-	bullet_instance2.global_position = gun2.global_position
-	var target = get_global_mouse_position()
-	var direction_to_mouse1 = bullet_instance1.global_position.direction_to(target).normalized()
-	bullet_instance1.set_direction(direction_to_mouse1)
-	var direction_to_mouse2 = bullet_instance2.global_position.direction_to(target).normalized()
-	bullet_instance2.set_direction(direction_to_mouse2)
-	print('shot!')
+	var right_bullet_instance = Bullet.instance()
+	var left_bullet_instance = Bullet.instance()
+
+	right_bullet_instance.global_position = right_gun.global_position
+	left_bullet_instance.global_position = left_gun.global_position
+	right_bullet_instance.rotation = rotation
+	left_bullet_instance.rotation = rotation
+
+	get_parent().add_child(right_bullet_instance)
+	get_parent().add_child(left_bullet_instance)
+
+	right_bullet_instance.set_direction(Vector2.UP.rotated(rotation))
+	left_bullet_instance.set_direction(Vector2.UP.rotated(rotation))
