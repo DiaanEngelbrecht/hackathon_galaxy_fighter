@@ -46,4 +46,12 @@ texture = ExtResource( 3 )
 
 [node name="GameOverlay" parent="." instance=ExtResource( 7 )]
 
+[node name="GameOver" parent="GameOverlay" index="2"]
+margin_left = 146.056
+margin_top = 323.38
+margin_right = 249.056
+margin_bottom = 349.38
+
 [connection signal="timeout" from="AsteroidBelt/SpawnTimer" to="AsteroidBelt" method="_on_SpawnTimer_timeout"]
+
+[editable path="GameOverlay"]

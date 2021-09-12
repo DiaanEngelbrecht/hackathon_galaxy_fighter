@@ -5,6 +5,7 @@ var score
 var high_score
 
 signal game_over
+signal score_increaded(new_score)
 signal health_changed(new_health)
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 
 func increase_score(amount_to_increase):
 	score += amount_to_increase
+	emit_signal('score_increaded', score)
 
 func decrement_health():
 	player_health -= 1
