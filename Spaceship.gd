@@ -25,6 +25,7 @@ func _ready():
 func _physics_process(delta):
 	move_spaceship()
 	rotate_spaceship()
+	
 
 func move_spaceship():
 	var direction = get_movement_direction()
@@ -51,10 +52,11 @@ func get_movement_direction():
 		direction += Vector2(1,0)
 	if Input.is_action_pressed("move_left"):
 		direction += Vector2(-1,0)
+	
 
 	return direction
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_released('shoot'):
 		shoot()
 

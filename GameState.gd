@@ -8,6 +8,11 @@ signal game_over
 signal score_increaded(new_score)
 signal health_changed(new_health)
 
+func reset():
+	player_health = 4
+	score = 0
+	emit_signal("health_changed", player_health)
+
 func _ready():
 	player_health = 4
 	score = 0
