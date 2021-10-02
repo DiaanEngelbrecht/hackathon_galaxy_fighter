@@ -2,6 +2,19 @@ extends Path2D
 
 export (PackedScene) var Asteroid
 
+onready var game_state = GameState
+
+func _ready():
+	game_state.connect("game_stage_changed", self, "enter_the_asteroid_belt")
+
+func enter_the_asteroid_belt(game_stage, stage_type):
+	if game_state.STAGE_TYPE.PLAYABLE == stage_type:
+		match game_stage:
+			game_state.GAME_STAGE.LEVEL1:
+				$SpawnTimer.start()
+	else:
+		$SpawnTimer.stop()
+
 func _on_SpawnTimer_timeout():
 	# Add an asteroid
 	# Choose a random location on Path2D.

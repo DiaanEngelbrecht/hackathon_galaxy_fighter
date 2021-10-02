@@ -4,3 +4,8 @@
 
 [node name="GameState" type="Node"]
 script = ExtResource( 1 )
+
+[node name="GameTime" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="GameTime" to="." method="_game_time_update"]

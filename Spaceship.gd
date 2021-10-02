@@ -22,7 +22,7 @@ func _ready():
 	motion = Vector2.ZERO
 	game_state.connect("game_over", self, "queue_free")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_spaceship()
 	rotate_spaceship()
 	
@@ -90,7 +90,7 @@ func _on_ForceField_body_entered(body):
 	if body.is_in_group("asteroids"):
 		recoil(body)
 
-func take_damage(body):
+func take_damage(_body):
 	game_state.decrement_health()
 	immune = true
 	$AnimationPlayer.play("Damaged")

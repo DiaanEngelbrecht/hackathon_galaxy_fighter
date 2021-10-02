@@ -4,13 +4,13 @@ export (int) var speed = 20
 
 var direction := Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if direction != Vector2.ZERO:
 		var velocity = direction * speed
 		global_position += velocity	
 
-func set_direction(direction: Vector2):
-	self.direction = direction
+func set_direction(new_direction: Vector2):
+	self.direction = new_direction
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

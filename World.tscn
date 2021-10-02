@@ -30,7 +30,6 @@ position = Vector2( -22.5739, 73.4645 )
 rotation = 1.74525
 
 [node name="SpawnTimer" type="Timer" parent="AsteroidBelt"]
-autostart = true
 
 [node name="GameOverlay" parent="." instance=ExtResource( 7 )]
 anchor_top = 0.0
