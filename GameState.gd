@@ -53,7 +53,7 @@ func change_game_stage(new_stage):
 			current_stage_type = STAGE_TYPE.CUTSCENE
 		GAME_STAGE.LEVEL1, GAME_STAGE.LEVEL2, GAME_STAGE.BOSS1:
 			current_stage_type = STAGE_TYPE.PLAYABLE
-	emit_signal("game_stage_changed", new_stage, current_game_stage)
+	emit_signal("game_stage_changed", new_stage, current_stage_type)
 
 
 func _game_time_update():

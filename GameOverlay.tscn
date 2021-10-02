@@ -84,11 +84,12 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Dialog"]
-margin_right = 40.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.2, 0.7 )
+margin_right = 400.0
+margin_bottom = 90.0
+rect_scale = Vector2( 0.1, 0.3 )
 custom_fonts/font = ExtResource( 3 )
-text = "Hello"
+align = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

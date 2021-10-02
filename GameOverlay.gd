@@ -14,8 +14,9 @@ func _ready():
 	game_state.connect("score_increaded", self, "update_score")
 	game_state.connect("game_over", self, 'show_text')
 
-	cutscene_handler.connect("show_text_dialog", self, 'show_text_dialog')
+
 	cutscene_handler.connect("hide_dialog", self, 'hide_dialog')
+	cutscene_handler.connect("show_text_dialog", self, 'show_text_dialog')
 
 func update_health_bar(new_player_health):
 	$TextureRect.texture.region.position.x = (4 - new_player_health) * 80
@@ -31,10 +32,10 @@ func _on_Restart_pressed():
 	GameState.reset();
 	get_tree().reload_current_scene()
 
-func show_text_dialog():
+func show_text_dialog(text):
 	print("Show dialog")
-	#print("Text to show", text)
-	#$Dialog/Label.text = text
+	print("Text to show", text)
+	$Dialog/Label.text = text
 	$Dialog.show()
 
 func hide_dialog():
