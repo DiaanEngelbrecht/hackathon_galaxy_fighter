@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/tie-fighter.png" type="Texture" id=1]
+[ext_resource path="res://Enemy.gd" type="Script" id=2]
+[ext_resource path="res://EnemyBullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/tie-fighter-explosion.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "explosion",
+"speed": 15.0
+} ]
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"destructable",
+"enemies",
+]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 2 )
+Bullet = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.265163, -1.14905 )
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -29.6848, -29.3209, -27.903, -28.4857, -27.9383, -24.9189, -27.7916, -21.8596, -27.7917, -6.49162, -23.2815, -2.76098, -14.1283, -3.61016, -5.95831, -12.6099, 5.17863, -12.7867, 14.1875, -3.375, 22.5911, -1.91489, 27.7177, -6.4227, 27.6293, -23.9236, 27.5312, -25.1562, 27.8944, -28.9617, 30.1925, -29.3153, 31.6068, -27.9011, 31.6068, -25.5146, 31.4062, -24.125, 31.1875, 14.7188, 31.1117, 16.0983, 31.2605, 18.1817, 31.2188, 19.9688, 30.4668, 32.0715, 27.9865, 32.1707, 27.6888, 22.051, 27.6888, 19.5707, 27.7188, 15.625, 27.6392, 13.866, 27.6392, 10.592, 21.4384, 5.78015, 14.8499, 9.14655, 5.47922, 18.2022, -5.46635, 18.3597, -17.2812, 8.03125, -21.1871, 5.54933, -26.9355, 10.3922, -27.4473, 13.8569, -27.5312, 16, -27.5261, 19.3297, -27.5655, 20.4715, -27.3686, 32.362, -30.9515, 32.3227, -31.125, 19.8125, -31.2271, 18.8179, -31.2665, 17.2036, -31.25, 14.9062, -30.9098, -23.0846, -30.9098, -25.2562, -30.5757, -28.2073 )
+
+[node name="Gun" type="Position2D" parent="."]
+position = Vector2( 0, -30 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

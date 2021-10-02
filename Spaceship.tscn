@@ -51,7 +51,9 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.752941, 0.231373, 0.231373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.752941, 0.231373, 0.231373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.752941, 0.231373, 0.231373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.752941, 0.231373, 0.231373, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Spaceship" type="KinematicBody2D"]
+[node name="Spaceship" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_mask = 3
 script = ExtResource( 2 )
 Bullet = ExtResource( 3 )

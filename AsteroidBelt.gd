@@ -10,7 +10,7 @@ func _ready():
 func enter_the_asteroid_belt(game_stage, stage_type):
 	if game_state.STAGE_TYPE.PLAYABLE == stage_type:
 		match game_stage:
-			game_state.GAME_STAGE.LEVEL1:
+			game_state.GAME_STAGE.LEVEL2:
 				$SpawnTimer.start()
 	else:
 		$SpawnTimer.stop()

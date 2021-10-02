@@ -85,16 +85,16 @@ func shoot():
 
 
 func _on_ForceField_body_entered(body):
-	if body.is_in_group("asteroids") and not immune:
-		take_damage(body)
 	if body.is_in_group("asteroids"):
+		take_damage()
 		recoil(body)
 
-func take_damage(_body):
-	game_state.decrement_health()
-	immune = true
-	$AnimationPlayer.play("Damaged")
-	$ForceField/ImmunityTimer.start()
+func take_damage():
+	if not immune:
+		game_state.decrement_health()
+		immune = true
+		$AnimationPlayer.play("Damaged")
+		$ForceField/ImmunityTimer.start()
 
 func recoil(body):
 	var response_force_direction = body.position.direction_to(position)

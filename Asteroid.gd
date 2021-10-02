@@ -9,7 +9,7 @@ var calculatedMass = 0
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
-func destroy_asteroid():
+func destroy():
 	$AnimatedSprite.play("explosion")
 	$AnimatedSprite.playing = true
 
