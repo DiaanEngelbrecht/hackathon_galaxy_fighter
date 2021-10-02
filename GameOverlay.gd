@@ -33,11 +33,8 @@ func _on_Restart_pressed():
 	get_tree().reload_current_scene()
 
 func show_text_dialog(text):
-	print("Show dialog")
-	print("Text to show", text)
 	$Dialog/Label.text = text
 	$Dialog.show()
 
 func hide_dialog():
-	print("Hiding dialog")
 	$Dialog.hide()

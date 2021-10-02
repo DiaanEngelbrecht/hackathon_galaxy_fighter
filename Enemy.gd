@@ -31,9 +31,6 @@ func aim_at_player():
 
 func move_to_target(delta):
 	motion = position.move_toward(target_position, MOVEMENT_SPEED * delta) - position
-	print("Current position",position)
-	print("Target position",target_position)
-	print("Motion",motion)
 	if (target_position-position).length() < 10:
 		shoot()
 		get_new_target_position()

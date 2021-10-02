@@ -17,11 +17,11 @@ func select_and_play_cutscene(game_stage, stage_type):
 			game_state.GAME_STAGE.INTRO:
 				print("Intro")
 				yield(get_tree().create_timer(0.5),"timeout")
-				emit_signal("show_text_dialog", "We have incoming bogies captain!")
+				emit_signal("show_text_dialog", "we have incoming bogies captain!")
 				$DialogTimer.start(3)
 			game_state.GAME_STAGE.CUT_TO_L2:
 				print("First level to second level cutscene")
-				emit_signal("show_text_dialog", "Oh no! Asteroid belt ahead! Brace yourselves!")
+				emit_signal("show_text_dialog", "oh no! asteroid belt ahead! brace yourselves!")
 				$DialogTimer.start(3)
 
 

@@ -22,5 +22,3 @@ func _on_SpawnTimer_timeout():
 	add_child(enemy)
 
 	$SpawnTimer.wait_time = clamp(lerp($SpawnTimer.wait_time, 0.25, 0.01), 0.25, 1)
-
-	print($SpawnTimer.wait_time)
