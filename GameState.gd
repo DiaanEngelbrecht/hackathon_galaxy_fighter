@@ -23,6 +23,9 @@ func reset():
 	score = 0
 	game_time = 0
 	target_play_time = 20
+	current_game_stage = GAME_STAGE.INTRO
+	current_stage_type = STAGE_TYPE.CUTSCENE
+	emit_signal("game_stage_changed", current_game_stage, current_stage_type)
 	emit_signal("health_changed", player_health)
 
 func _ready():
