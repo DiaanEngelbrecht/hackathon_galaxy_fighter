@@ -31,4 +31,17 @@ __meta__ = {
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = -236.546
+margin_top = -209.551
+margin_right = -3.54599
+margin_bottom = -97.5514
+rect_scale = Vector2( 3.1248, 2.96209 )
+custom_fonts/font = ExtResource( 1 )
+text = "galaxy fighter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="StartBtn" to="." method="_on_StartBtn_pressed"]

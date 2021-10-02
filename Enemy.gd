@@ -13,9 +13,10 @@ var target_position
 var motion = Vector2.ZERO
 
 func _ready():
-	get_new_target_position()
+	randomize()
+	position = Vector2(rand_range(SAFETY_ZONE,get_viewport().size.x/2 - SAFETY_ZONE), -50)
+	target_position = Vector2(position.x, rand_range(SAFETY_ZONE,get_viewport().size.y/4 - SAFETY_ZONE))
 	GameState.connect("game_over", self, "queue_free")
-	print("Viewport", get_viewport().size)
 
 func _physics_process(delta):
 	move_to_target(delta)
