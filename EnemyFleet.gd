@@ -1,7 +1,7 @@
 extends Node
 
 export (PackedScene) var Enemy
-export var minimum_spawn_time = 0.45
+export var minimum_spawn_time = 0.8
 
 onready var game_state = GameState
 
@@ -22,4 +22,4 @@ func _on_SpawnTimer_timeout():
 	var enemy = Enemy.instance()
 	add_child(enemy)
 
-	$SpawnTimer.wait_time = clamp(lerp($SpawnTimer.wait_time, minimum_spawn_time, 0.005), minimum_spawn_time, 1)
+	$SpawnTimer.wait_time = clamp(lerp($SpawnTimer.wait_time, minimum_spawn_time, 0.005), minimum_spawn_time, 2)

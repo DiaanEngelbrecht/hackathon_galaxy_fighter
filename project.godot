@@ -11,14 +11,14 @@ config_version=4
 [application]
 
 config/name="Hackathon Galaxy Fighter"
-run/main_scene="res://StartMenu.tscn"
+run/main_scene="res://gui/start_menu/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GameState="*res://GameState.tscn"
-CutsceneHandler="*res://CutsceneHandler.tscn"
-Armory="*res://Armory.tscn"
+GameState="*res://providers/game_state/GameState.tscn"
+CutsceneHandler="*res://providers/cutscenes/CutsceneHandler.tscn"
+Armory="*res://providers/armory/Armory.tscn"
 
 [display]
 

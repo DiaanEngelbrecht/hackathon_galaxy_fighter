@@ -3,10 +3,10 @@
 [ext_resource path="res://Spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://AsteroidBelt.gd" type="Script" id=2]
 [ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemies/tai_fighter/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World.gd" type="Script" id=5]
-[ext_resource path="res://Asteroid.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GameOverlay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://projectiles/asteroid/Asteroid.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gui/GameOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyFleet.gd" type="Script" id=8]
 
 [sub_resource type="Curve2D" id=1]
@@ -38,6 +38,7 @@ script = ExtResource( 8 )
 Enemy = ExtResource( 4 )
 
 [node name="SpawnTimer" type="Timer" parent="EnemyFleet"]
+wait_time = 2.0
 
 [node name="GameOverlay" parent="." instance=ExtResource( 7 )]
 anchor_top = 0.0
