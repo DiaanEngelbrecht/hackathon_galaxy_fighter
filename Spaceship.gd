@@ -10,15 +10,15 @@ const MASS = 100
 # Global variables
 var motion := Vector2.ZERO
 var immune := false
-
-export (PackedScene) var Bullet
+var viewport_x := 0
+var viewport_y := 0
 
 onready var game_state = GameState
-onready var right_gun = $RightGun
-onready var left_gun = $LeftGun
-
+onready var armory = Armory
 
 func _ready():
+	viewport_x = get_viewport().size.x
+	viewport_y = get_viewport().size.y
 	motion = Vector2.ZERO
 	game_state.connect("game_over", self, "queue_free")
 
@@ -37,6 +37,11 @@ func move_spaceship():
 	motion = motion_magnitude * motion_direction
 	fire_engines(direction)
 	move_and_slide(motion)
+	ensure_confined_to_viewport()
+	
+func ensure_confined_to_viewport():
+	position.x = clamp(position.x, 0, viewport_x)
+	position.y = clamp(position.y, 0, viewport_y)
 
 func rotate_spaceship():
 	rotation = Vector2.DOWN.angle_to((position - get_global_mouse_position()).normalized())
@@ -53,7 +58,6 @@ func get_movement_direction():
 	if Input.is_action_pressed("move_left"):
 		direction += Vector2(-1,0)
 	
-
 	return direction
 
 func _input(event):
@@ -69,20 +73,7 @@ func fire_engines(direction):
 		$Thrustors/RightThrustor.emitting = true
 
 func shoot():
-	var right_bullet_instance = Bullet.instance()
-	var left_bullet_instance = Bullet.instance()
-
-	right_bullet_instance.global_position = right_gun.global_position
-	left_bullet_instance.global_position = left_gun.global_position
-	right_bullet_instance.rotation = rotation
-	left_bullet_instance.rotation = rotation
-
-	get_parent().add_child(right_bullet_instance)
-	get_parent().add_child(left_bullet_instance)
-
-	right_bullet_instance.set_direction(Vector2.UP.rotated(rotation - PI/60))
-	left_bullet_instance.set_direction(Vector2.UP.rotated(rotation + PI/60))
-
+	armory.fire_current_weapon(self)
 
 func _on_ForceField_body_entered(body):
 	if body.is_in_group("asteroids"):

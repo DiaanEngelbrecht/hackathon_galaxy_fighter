@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 GameState="*res://GameState.tscn"
 CutsceneHandler="*res://CutsceneHandler.tscn"
+Armory="*res://Armory.tscn"
 
 [display]
 
