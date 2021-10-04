@@ -25,7 +25,6 @@ func _ready():
 func _physics_process(_delta):
 	move_spaceship()
 	rotate_spaceship()
-	
 
 func move_spaceship():
 	var direction = get_movement_direction()
