@@ -10,15 +10,16 @@ const MASS = 100
 # Global variables
 var motion := Vector2.ZERO
 var immune := false
-var viewport_x := 0
-var viewport_y := 0
+var viewport_x := 480
+var viewport_y := 720
 
 onready var game_state = GameState
 onready var armory = Armory
 
 func _ready():
-	viewport_x = get_viewport().size.x
-	viewport_y = get_viewport().size.y
+	viewport_x = ProjectSettings.get_setting("display/window/size/width")
+	viewport_y = ProjectSettings.get_setting("display/window/size/height")
+	print("Viewport x dimension: ", viewport_x)
 	motion = Vector2.ZERO
 	game_state.connect("game_over", self, "queue_free")
 
